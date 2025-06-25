@@ -34,13 +34,11 @@ export const NavigationSection = () => {
         <nav className="navbar navbar-expand-lg w-100">
           <div className="container-fluid justify-content-center justify-content-lg-center">
             <button
-              className="navbar-toggler"
+              className="btn d-lg-none"
               type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#mainNav"
-              aria-controls="mainNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileDrawer"
+              aria-controls="mobileDrawer"
             >
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -89,8 +87,8 @@ export const NavigationSection = () => {
           </div>
         </nav>
 
-        {window.innerWidth > 786 && <button
-          className="btn d-flex align-items-center justify-content-center px-4 py-1 rounded-pill shadow"
+        <button
+          className="btn d-none d-md-flex align-items-center justify-content-center px-4 py-1 rounded-pill shadow"
           aria-label="Buy Now"
           style={{
             height: "39px",
@@ -122,7 +120,7 @@ export const NavigationSection = () => {
               transform: "rotate(-40deg)",
             }}
           />
-        </button>}
+        </button>
       </div>
 
       <div
@@ -230,6 +228,39 @@ export const NavigationSection = () => {
               objectFit: "cover",
             }}
           />
+        </div>
+      </div>
+      <div
+        className="offcanvas offcanvas-end"
+        tabIndex={-1}
+        id="mobileDrawer"
+        aria-labelledby="mobileDrawerLabel"
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="mobileDrawerLabel">Menu</h5>
+          <button
+            type="button"
+            className="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div className="offcanvas-body d-flex flex-column gap-3">
+          {navItems.map((item, index) => (
+            <button
+              key={index}
+              className="btn text-start"
+              style={{
+                fontWeight: 600,
+                fontSize: "16px",
+                color: item.active ? "#56C690" : "#333",
+                background: "none",
+                border: "none",
+              }}
+            >
+              {item.name}
+            </button>
+          ))}
         </div>
       </div>
     </header>
